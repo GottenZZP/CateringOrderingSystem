@@ -2,10 +2,10 @@ package com.sky.controller.admin;
 
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
+import com.sky.entity.Dish;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.DishService;
-import com.sky.service.impl.DishServiceImpl;
 import com.sky.vo.DishVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -86,11 +86,31 @@ public class DishController {
         return Result.success(dishVO);
     }
 
+    /**
+     * 更新菜品
+     *
+     * @param dishDTO 菜品数据传输对象
+     * @return {@link Result}
+     */
     @PutMapping
     @ApiOperation("修改菜品")
     public Result update(@RequestBody DishDTO dishDTO) {
         log.info("修改菜品, {}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
+    }
+
+    /**
+     * 按类别id获取菜品
+     *
+     * @param categoryId 类别id
+     * @return {@link Result}<{@link List}<{@link DishVO}>>
+     */
+    @GetMapping("/list")
+    @ApiOperation("根据分类id查询菜品")
+    public Result<List<Dish>> list(Long categoryId) {
+        log.info("根据分类id查询菜品, {}", categoryId);
+        List<Dish> dishList = dishService.list(categoryId);
+        return Result.success(dishList);
     }
 }
