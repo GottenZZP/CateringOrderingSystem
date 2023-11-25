@@ -15,6 +15,12 @@ public interface SetmealService {
 
     List<Setmeal> list(Setmeal setmeal);
 
+    /**
+     * 根据id查询菜品选项
+     *
+     * @param id id
+     * @return {@link List}<{@link DishItemVO}>
+     */
     List<DishItemVO> getDishItemById(Long id);
 
     PageResult pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
