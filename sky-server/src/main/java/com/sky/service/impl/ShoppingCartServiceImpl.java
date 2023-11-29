@@ -96,6 +96,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void subShoppingCart(ShoppingCartDTO shoppingCartDTO) {
+        // 判断当前用户是否已经添加过该菜品
+        ShoppingCart shoppingCart = ShoppingCart.builder()
+                .userId(BaseContext.getCurrentId())
+                .dishId(shoppingCartDTO.getDishId())
+                .setmealId(shoppingCartDTO.getSetmealId())
+                .dishFlavor(shoppingCartDTO.getDishFlavor())
+                .build();
+        List<ShoppingCart> shoppingCartList = shoppingCartMapper.list(shoppingCart);
 
+        // 如果已经添加过，则更新数量
+        if(shoppingCartList != null && !shoppingCartList.isEmpty()) {
+            ShoppingCart cart = shoppingCartList.get(0);
+            // 如果数量为1，则删除购物车中的该菜品/套餐
+            if (cart.getNumber() == 1) {
+                shoppingCartMapper.delete(cart);
+            } else {
+                // 否则，更新数量
+                cart.setNumber(cart.getNumber() - 1);
+                shoppingCartMapper.updateNumberById(cart);
+            }
+        }
     }
 }
