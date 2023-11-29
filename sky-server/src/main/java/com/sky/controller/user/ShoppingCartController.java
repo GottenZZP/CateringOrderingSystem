@@ -34,11 +34,31 @@ public class ShoppingCartController {
         return Result.success();
     }
 
+    @PostMapping("/sub")
+    @ApiOperation("减少购物车")
+    public Result sub(@RequestBody ShoppingCartDTO shoppingCartDTO) {
+        log.info("减少购物车: {}", shoppingCartDTO);
+        shoppingCartService.subShoppingCart(shoppingCartDTO);
+        return Result.success();
+    }
+
+    /**
+     * 展示购物车
+     *
+     * @return {@link Result}<{@link List}<{@link ShoppingCart}>>
+     */
     @GetMapping("/list")
     @ApiOperation("查询购物车列表")
     public Result<List<ShoppingCart>> list() {
         log.info("查询购物车列表");
         List<ShoppingCart> list = shoppingCartService.showShoppingCart();
         return Result.success(list);
+    }
+
+    @DeleteMapping("/clean")
+    public Result clean() {
+        log.info("清空购物车...");
+        shoppingCartService.cleanShoppingCart();
+        return Result.success();
     }
 }

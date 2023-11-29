@@ -7,7 +7,11 @@ import java.util.List;
 
 public interface ShoppingCartService {
 
-    public void addShoppingCart(ShoppingCartDTO shoppingCartDTO);
+    void addShoppingCart(ShoppingCartDTO shoppingCartDTO);
 
     List<ShoppingCart> showShoppingCart();
+
+    void cleanShoppingCart();
+
+    void subShoppingCart(ShoppingCartDTO shoppingCartDTO);
 }
