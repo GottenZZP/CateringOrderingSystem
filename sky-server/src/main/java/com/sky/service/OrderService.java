@@ -24,12 +24,13 @@ public interface OrderService {
     void paySuccess(String outTradeNo);
 
     /**
-     * 历史订单查询
-     *
-     * @param ordersPageQueryDTO 订单页查询数据传输对象
-     * @return {@link PageResult}
+     * 用户端订单分页查询
+     * @param page
+     * @param pageSize
+     * @param status
+     * @return
      */
-    PageResult pageQuery4User(int page, int pageSize, int status);
+    PageResult pageQuery4User(int page, int pageSize, Integer status);
 
     /**
      * 获取订单详细信息
