@@ -66,4 +66,6 @@ public interface OrderMapper {
     void updateStatus(Integer orderStatus, Integer orderPaidStatus, LocalDateTime check_out_time, String orderNumber);
 
     Double subByMap(Map map);
+
+    Double countByMap(Map map);
 }
