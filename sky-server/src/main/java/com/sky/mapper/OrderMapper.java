@@ -67,5 +67,5 @@ public interface OrderMapper {
 
     Double subByMap(Map map);
 
-    Double countByMap(Map map);
+    Integer countByMap(Map map);
 }

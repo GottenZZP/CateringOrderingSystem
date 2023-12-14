@@ -81,7 +81,7 @@
             </if>
         </where>
     </select>
-    <select id="countByMap" resultType="java.lang.Double">
+    <select id="countByMap" resultType="java.lang.Integer">
         select count(*) from orders
         <where>
             <if test="begin != null">

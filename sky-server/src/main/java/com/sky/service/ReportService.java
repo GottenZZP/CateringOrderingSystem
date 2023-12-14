@@ -1,6 +1,7 @@
 package com.sky.service;
 
 
+import com.sky.vo.OrderReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 
@@ -26,4 +27,13 @@ public interface ReportService {
      * @return {@link UserReportVO}
      */
     UserReportVO getUserStatistics(LocalDate begin, LocalDate end);
+
+    /**
+     * 获取订单统计信息
+     *
+     * @param begin 开始
+     * @param end   结束
+     * @return {@link UserReportVO}
+     */
+    OrderReportVO getOrdersStatistics(LocalDate begin, LocalDate end);
 }
